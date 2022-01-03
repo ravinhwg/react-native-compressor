@@ -92,10 +92,19 @@ react-native link react-native-compressor
 
 #### Android
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
+1. Open up `android/app/src/main/java/[...]/MainApplication.java`
 
 - Add `import com.reactnativecompressor.CompressorPackage;` to the imports at the top of the file
 - Add `new CompressorPackage()` to the list returned by the `getPackages()` method
+   ```
+   @Override
+    protected List<ReactPackage> getPackages() {
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      packages.add(new CompressorPackage()); // <-- Add this line
+      return packages;
+    }
+   ```
 
 2. Append the following lines to `android/settings.gradle`:
    ```
